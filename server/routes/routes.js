@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const Route = express.Router();
 
 //getting model of user
@@ -27,9 +28,17 @@ Route.post("/register", async (req, res) => {
     const { userName, email, phone, work, password, cPassword } = req.body; //destructuring
     if (!userName || !email || !phone || !work || !password || !cPassword) {
       /*checking for null values */
-      res.status(422).json({ message: "Please fillout every field properly." });
+      res.status(422).json({
+        message: "Please fillout every field properly.",
+      });
+    } else if (password !== cPassword) {
+      res.status(502).json({
+        message: "Passwords are not matching",
+      });
     } else {
-      const checkIfEmailExists = await UserData.findOne({ email }); //equals to {email:email}
+      const checkIfEmailExists = await UserData.findOne({
+        email,
+      }); //equals to {email:email}
       if (checkIfEmailExists) {
         res.status(502).json({
           message: "This email already exists please try another one.",
@@ -44,12 +53,13 @@ Route.post("/register", async (req, res) => {
           password,
           cPassword,
         });
+        //calling the schema.pre middleware to encrypt the password goto schema and see the middleware
         const studentDataSaved = await createNewUser.save(); //saving the created user
         if (studentDataSaved) {
           //checking if the data has saved or not
-          res
-            .status(200)
-            .json({ message: "Your data has benn saved successfully " });
+          res.status(200).json({
+            message: "Your data has been saved successfully ",
+          });
         }
       }
     }
@@ -60,4 +70,43 @@ Route.post("/register", async (req, res) => {
   }
 });
 
+//creating a login system
+Route.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.status(422).json({
+        error: "Please fill out the fields properly.",
+      });
+    } else {
+      try {
+        const checkIfUserExists = await UserData.findOne({
+          email,
+        }); //checking if given email exists in database or not
+        const { password: userPassword, cPassword } = checkIfUserExists; //destruccturing
+        const compareHashPassword =
+          (await bcrypt.compare(password, userPassword)) ||
+          password === cPassword; //using the shortCircuit method
+        if (checkIfUserExists && compareHashPassword) {
+          //if emaill exist and password is true
+          res.status(200).json({
+            message: "Login Successfull.",
+          });
+        } else {
+          res.status(502).json({
+            error: "Email or password is incorrect -> Pass. ",
+          }); //if password is incorrect
+        }
+      } catch (error) {
+        res.status(502).json({
+          error: "Email or password is incorrect -> Email.",
+        }); //if Email doest exists
+      }
+    }
+  } catch (error) {
+    res.status(502).json({
+      message: "Internal server error for Login ",
+    });
+  }
+});
 module.exports = Route;
