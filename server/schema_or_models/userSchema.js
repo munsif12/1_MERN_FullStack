@@ -6,6 +6,7 @@ Mongoose Schema vs. Model. A Mongoose model is a wrapper on the Mongoose schema.
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 //creating the schema for userData schema matlab data kis shape ma para hua hoga like sql ma taables ka ander kon  fields hote h wasa
 const userSchema = new mongoose.Schema({
@@ -34,20 +35,27 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Password is required"],
     minLength: [6, "Password can't be less then 4 characters"],
-    maxLength: [25, "Password can't be greater then 25 characters"],
     trim: true,
   },
   cPassword: {
     type: String,
     required: [true, "Password is required"],
     minLength: [6, "Password can't be less then 6 characters"],
-    maxLength: [25, "Password can't be greater then 25 characters"],
     trim: true,
   },
   date: {
     type: Date,
     default: Date.now,
   },
+  //tokens is array of objects becoz user can login multiple times isleya jab b woh login kry ga uska leya 1 token generate hoga or wo tokens ma save hoga
+  tokens: [
+    {
+      token: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
 //middleware hamesha modle banay sa phly call hogy wrna app kam to theak kry ga lakin iscase my hash nhi hoga just simple save hoga
@@ -62,6 +70,34 @@ userSchema.pre("save", async function (next) {
   }
   next(); //will call the save() method
 });
+
+//creating a webToken for user
+userSchema.methods.createWebTokenForUser = async function () {
+  try {
+    //jwt.sign() =>contains thre parameters encryptiontype(optional{sha325,}),Payload(must be unique for everyUser=> {id,nameetc}),SecretKey(ny known to you)
+    const generatedTokenForUser = jwt.sign(
+      {
+        // ya sara data user ka isleya payload ma rakha h taka user ko achy sa identify keya ja saky wana sirf ap id b rakh sakty thy magr hona unique chaheya payload
+        _id: this.id,
+        date: this.date,
+        email: this.email,
+        name: this.name,
+      },
+      process.env.SECRET__KEY
+    ); //generating the user token
+
+    //adding the token to tokens field
+    this.tokens = this.tokens.concat({
+      token: generatedTokenForUser,
+    });
+    // console.log(this); this conatain sara data of user
+
+    await this.save(); //this will actually save the generated token inside the token field in userSchema
+    return generatedTokenForUser;
+  } catch (error) {
+    console.log("error while generating the userToken" + error);
+  }
+};
 
 //creating model mtlab single user ka data {name:"sdsd",age:"etc"..etc}
 const UsersData = mongoose.model("usersData", userSchema); //("tablename",schemaname)
