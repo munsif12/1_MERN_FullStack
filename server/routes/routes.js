@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const Route = express.Router();
+const jwt = require("jsonwebtoken");
 
 //getting model of user
 const UserData = require("../schema_or_models/userSchema");
@@ -83,15 +84,26 @@ Route.post("/login", async (req, res) => {
         const checkIfUserExists = await UserData.findOne({
           email,
         }); //checking if given email exists in database or not
+
         const { password: userPassword, cPassword } = checkIfUserExists; //destruccturing
         const compareHashPassword =
           (await bcrypt.compare(password, userPassword)) ||
           password === cPassword; //using the shortCircuit method
+
         if (checkIfUserExists && compareHashPassword) {
-          //if emaill exist and password is true
-          res.status(200).json({
-            message: "Login Successfull.",
+          //generting web tokens createWebToken method is dfined inside schema
+          let userToken = await checkIfUserExists.createWebTokenForUser();
+          //storing the Webtoken in the cokie taka ham bad me comparision karwasaky
+          res.cookie("jsonWebToken", userToken, {
+            expires: new Date(Date.now() + 50000),
+            httpOnly: true,
           });
+
+          //if emaill exist and password is true
+          // res.status(200).json({
+          //   message: "Login Successfull.",
+          // });
+          res.status(200).send("hello cookies");
         } else {
           res.status(502).json({
             error: "Email or password is incorrect -> Pass. ",
