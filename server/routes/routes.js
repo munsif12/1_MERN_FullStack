@@ -1,7 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const Route = express.Router();
-const jwt = require("jsonwebtoken");
 
 //getting model of user
 const UserData = require("../schema_or_models/userSchema");
@@ -26,7 +25,14 @@ Route.get("/about", (req, res) => {
 //storing user registration data to mongodb atlas
 Route.post("/register", async (req, res) => {
   try {
-    const { userName, email, phone, work, password, cPassword } = req.body; //destructuring
+    const {
+      name: userName,
+      email,
+      phone,
+      work,
+      password,
+      cPassword,
+    } = req.body; //destructuring
     if (!userName || !email || !phone || !work || !password || !cPassword) {
       /*checking for null values */
       res.status(422).json({
@@ -77,7 +83,7 @@ Route.post("/login", async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
       res.status(422).json({
-        error: "Please fill out the fields properly.",
+        message: "Please fill out the fields properly.",
       });
     } else {
       try {
@@ -103,15 +109,17 @@ Route.post("/login", async (req, res) => {
           // res.status(200).json({
           //   message: "Login Successfull.",
           // });
-          res.status(200).send("hello cookies");
+          res.status(200).json({
+            message: "Logged In Successfully",
+          });
         } else {
           res.status(502).json({
-            error: "Email or password is incorrect -> Pass. ",
+            message: "Email or password is incorrect -> Pass. ",
           }); //if password is incorrect
         }
       } catch (error) {
         res.status(502).json({
-          error: "Email or password is incorrect -> Email.",
+          message: "Email or password is incorrect -> Email.",
         }); //if Email doest exists
       }
     }
