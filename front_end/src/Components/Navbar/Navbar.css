@@ -1,0 +1,35 @@
+nav {
+  background: linear-gradient(280deg, white, black);
+}
+#bootstrap__overide_css_for__Navbar .navbar_logo {
+  font-size: 32px;
+  color: white;
+  letter-spacing: 4px;
+  font-weight: bold;
+  margin-left: 3%;
+}
+#bootstrap__overide_css_for__Navbar li {
+  margin: 0px 10px 0px 10px;
+}
+#bootstrap__overide_css_for__Navbar .common {
+  padding: 0px 5px 0px 5px;
+  color: black;
+  margin: 0px 10px;
+  font-size: 22px;
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+#bootstrap__overide_css_for__Navbar .activeClass {
+  border-bottom: 4px solid black;
+  position: relative;
+}
+#bootstrap__overide_css_for__Navbar .activeClass ::after {
+  position: absolute;
+  content: " ";
+  height: 5px;
+  left: 0;
+  background: black;
+  width: 100%;
+  bottom: -5%;
+}
