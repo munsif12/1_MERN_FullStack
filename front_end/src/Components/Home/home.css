@@ -1,0 +1,34 @@
+.home {
+  position: relative;
+  min-height: 88vh;
+  background: black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.home__content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: transparent;
+  min-height: 80vh;
+  width: 100vw;
+  z-index: 98;
+}
+.home__content__logoLeft {
+  height: 100%;
+  width: 45%;
+}
+.logo {
+  width: 50%;
+  height: 50%;
+}
+.home_content__welcomeTextRight > h1 {
+  color: white;
+}
+.backgroundSvgWave {
+  position: absolute;
+  width: 100%;
+  margin-top: auto;
+  bottom: 0;
+}
