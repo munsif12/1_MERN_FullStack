@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import DialpadIcon from "@material-ui/icons/Dialpad";
+import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import "./Register.css";
 function Register() {
   const history = useHistory();
@@ -96,63 +102,120 @@ function Register() {
   }
   return (
     <div className="register">
-      <form method="POST">
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Username"
-          value={formFilds.name}
-          onChange={getFormFieldsData}
-        />
-        <input
-          type="text"
-          name="email"
-          id="email"
-          placeholder="Email"
-          value={formFilds.email}
-          onChange={getFormFieldsData}
-        />
-        <input
-          type="phone"
-          name="phone"
-          id="phone"
-          placeholder="Phone"
-          value={formFilds.phone}
-          onChange={getFormFieldsData}
-        />
-        <input
-          type="text"
-          name="work"
-          id="work"
-          placeholder="Work"
-          value={formFilds.work}
-          onChange={getFormFieldsData}
-        />
-        <input
-          type="text"
-          name="password"
-          id="password"
-          placeholder="Password"
-          value={formFilds.password}
-          onChange={getFormFieldsData}
-        />
-        <input
-          type="text"
-          name="cPassword"
-          id="cPassword"
-          placeholder="Confirm Password"
-          value={formFilds.cPassword}
-          onChange={getFormFieldsData}
-        />
-        <input
-          type="submit"
-          value="Submit"
-          name="submit"
-          id="submit"
-          onClick={submitData}
-        />
-      </form>
+      <div className="content__wrapper">
+        <div className="content__wrapper_left">
+          <div className="wrapper__left__details">
+            <h1>
+              Register With Us Here {"  "}
+              <ArrowForwardIosIcon className="arrow" />
+            </h1>
+          </div>
+        </div>
+        <div className="content__wrapper_right">
+          <div className="content__wrapper_right__form__wrapper">
+            <form method="POST">
+              <div className="from__wrapper_name common">
+                <input
+                  className="comon_input"
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Username"
+                  value={formFilds.name}
+                  onChange={getFormFieldsData}
+                />
+                <div className="input__Logo">
+                  <PermIdentityIcon />
+                </div>
+              </div>
+              <div className="from__wrapper_email common">
+                <input
+                  className="comon_input"
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  value={formFilds.email}
+                  onChange={getFormFieldsData}
+                />
+                <div className="input__Logo">
+                  <AlternateEmailIcon />
+                </div>
+              </div>
+
+              <div className="from__wrapper_phone common">
+                <input
+                  className="comon_input"
+                  type="phone"
+                  name="phone"
+                  id="phone"
+                  placeholder="Phone"
+                  value={formFilds.phone}
+                  onChange={getFormFieldsData}
+                />
+                <div className="input__Logo">
+                  <DialpadIcon />
+                </div>
+              </div>
+
+              <div className="from__wrapper_work common">
+                <input
+                  className="comon_input"
+                  type="text"
+                  name="work"
+                  id="work"
+                  placeholder="Work"
+                  value={formFilds.work}
+                  onChange={getFormFieldsData}
+                />
+                <div className="input__Logo">
+                  <WorkOutlineIcon />
+                </div>
+              </div>
+
+              <div className="from__wrapper_password common">
+                <input
+                  className="comon_input"
+                  type="text"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  value={formFilds.password}
+                  onChange={getFormFieldsData}
+                />
+                <div className="input__Logo">
+                  <VisibilityIcon />
+                </div>
+              </div>
+
+              <div className="from__wrapper_cPassword common">
+                <input
+                  className="comon_input"
+                  type="text"
+                  name="cPassword"
+                  id="cPassword"
+                  placeholder="Confirm Password"
+                  value={formFilds.cPassword}
+                  onChange={getFormFieldsData}
+                />
+                <div className="input__Logo">
+                  <VisibilityIcon />
+                </div>
+              </div>
+
+              <div className="form__wrapper__sunmitButton">
+                <input
+                  type="submit"
+                  value="Submit"
+                  name="submit"
+                  id="submit"
+                  onClick={submitData}
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
       <ToastContainer />
     </div>
   );
