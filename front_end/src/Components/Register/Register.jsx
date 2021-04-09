@@ -199,7 +199,7 @@ function Register() {
                   onChange={getFormFieldsData}
                 />
                 <div className="input__Logo">
-                  <VisibilityIcon />
+                  <VisibilityOffIcon />
                 </div>
               </div>
 
