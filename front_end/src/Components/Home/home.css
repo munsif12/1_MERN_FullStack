@@ -1,34 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
 .home {
   position: relative;
-  min-height: 88vh;
+  min-height: 88.3vh;
   background: black;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 .home__content {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "logo content";
   background: transparent;
   min-height: 80vh;
   width: 100vw;
   z-index: 98;
 }
 .home__content__logoLeft {
+  grid-area: logo;
   height: 100%;
-  width: 45%;
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 .logo {
-  width: 50%;
-  height: 50%;
+  width: 250px;
+  height: 250px;
+  margin-left: 10%;
+  margin-top: -30%;
 }
-.home_content__welcomeTextRight > h1 {
+.home_content__welcomeTextRight {
+  grid-area: content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   color: white;
+  flex-direction: column;
+}
+.home__content__heading {
+  width: 85%;
+  margin-top: 10%;
+}
+.home__content__heading h1 {
+  margin: 0;
+  margin-bottom: 15px;
+}
+.home__content__news {
+  width: 85%;
+}
+.home__content__news p {
+  margin: 0;
+}
+.home__content__quote {
+  width: 85%;
+  font-family: "Abel", sans-serif;
+}
+.home__content__quote > p {
+  font-family: "Indie Flower", cursive;
+  margin: 0;
+}
+.home__content__quote > p > span {
+  font-size: 32px;
+  color: lawngreen;
+  margin: 0;
+  padding: 0;
+}
+.home_content__welcomeTextRight .home__content__heading > h1 {
+  font-size: 52px;
 }
 .backgroundSvgWave {
   position: absolute;
   width: 100%;
   margin-top: auto;
   bottom: 0;
+}
+@media screen and (max-width: 750px) {
+  .home__content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50vh 1fr;
+    grid-template-areas: "logo" "content";
+    background: transparent;
+  }
+  .home__content__logoLeft {
+    justify-content: center;
+    width: 100%;
+  }
+  .logo {
+    margin: 0;
+    width: 50%;
+  }
+  .logo svg {
+    height: 100%;
+    width: 100%;
+  }
+  .backgroundSvgWave {
+    position: relative;
+  }
 }
