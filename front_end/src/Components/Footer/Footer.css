@@ -1,0 +1,39 @@
+.footer {
+  width: 99.9%;
+  min-height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 0px 8px 0px;
+  margin-top: auto;
+  color: white;
+}
+.folloeMeLogos {
+  margin-left: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.folloeMeLogos :hover a {
+  color: blue;
+}
+.folloeMeLogos a {
+  color: black;
+  transition: 0.5s ease-in;
+}
+.folloeMeLogos a {
+  height: 5vh;
+}
+.copyRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5%;
+}
+.copyRight > p {
+  margin: 0;
+}
+.logo__footer {
+  color: white;
+}
