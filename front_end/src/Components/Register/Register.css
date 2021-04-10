@@ -175,9 +175,6 @@
     margin: 0;
     grid-template-areas: "content_logo " " content_header ";
   }
-  .wrapper__left__details > h1 {
-    grid-area: content_header;
-  }
   .register_Svg {
     height: 100%;
     width: 100%;
@@ -191,6 +188,7 @@
     width: 300px;
   }
   .wrapper__left__details > h1 {
+    grid-area: content_header;
     margin-top: 5%;
     text-align: center;
     font-size: 32px;
