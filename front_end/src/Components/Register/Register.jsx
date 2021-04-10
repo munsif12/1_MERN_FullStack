@@ -9,7 +9,9 @@ import DialpadIcon from "@material-ui/icons/Dialpad";
 import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import "./Register.css";
+import RegisterSvg from "./RegisterSvg";
 function Register() {
   const history = useHistory();
   const [formFilds, setFormFilds] = useState({
@@ -106,9 +108,12 @@ function Register() {
         <div className="content__wrapper_left">
           <div className="wrapper__left__details">
             <h1>
-              Register With Us Here {"  "}
+              Register With Us Here {"    "}
               <ArrowForwardIosIcon className="arrow" />
             </h1>
+            <div className="register_Svg">
+              <RegisterSvg />
+            </div>
           </div>
         </div>
         <div className="content__wrapper_right">
@@ -206,13 +211,27 @@ function Register() {
               <div className="form__wrapper__sunmitButton">
                 <input
                   type="submit"
-                  value="Submit"
+                  value="Register"
                   name="submit"
                   id="submit"
                   onClick={submitData}
                 />
+                <div className="submit__arrow">
+                  <ArrowRightAltIcon />
+                </div>
               </div>
             </form>
+          </div>
+          <div className="already__registered">
+            <p
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                history.push("/login");
+              }}
+              className="already_register_text"
+            >
+              Already Register
+            </p>
           </div>
         </div>
       </div>
