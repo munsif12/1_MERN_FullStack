@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Navbar.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { NavLink } from "react-router-dom";
+import anime from "animejs/lib/anime.es.js";
 function Navbar() {
+  useEffect(() => {
+    anime({
+      targets: ".navbar_logo",
+      opacity: 1,
+      translateX: 30,
+      duration: 3000,
+      // direction: "alternate",
+    });
+  });
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink className="navbar-brand navbar_logo" to="##">
-          MUNSIF
+          <span className="letter">M</span>
+          <span className="letter">U</span>
+          <span className="letter">N</span>
+          <span className="letter">S</span>
+          <span className="letter">I</span>
+          <span className="letter">F</span>
         </NavLink>
         <button
           className="navbar-toggler"

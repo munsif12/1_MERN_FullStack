@@ -6,8 +6,10 @@ nav {
   color: white;
   letter-spacing: 4px;
   font-weight: bold;
-  margin-left: 3%;
+  margin-left: 1%;
+  transform: translateX(-200px);
 }
+
 #bootstrap__overide_css_for__Navbar li {
   margin: 0px 10px 0px 10px;
 }
