@@ -82,10 +82,10 @@
   outline: none;
   padding-left: 5px;
 }
-.input__Logo {
+.register__Logo {
   position: absolute;
   right: 1%;
-  top: 10%;
+  top: 12%;
   color: white;
   background: black;
   z-index: 999;
@@ -198,6 +198,7 @@
   }
   .content__wrapper_right {
     justify-content: center;
+    margin-top: 25px;
   }
   .content__wrapper_right__form__wrapper {
     min-height: 50vh;
