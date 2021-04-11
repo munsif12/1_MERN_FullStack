@@ -9,7 +9,11 @@ nav {
   margin-left: 1%;
   transform: translateX(-200px);
 }
-
+#bootstrap__overide_css_for__Navbar ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #bootstrap__overide_css_for__Navbar li {
   margin: 0px 10px 0px 10px;
 }
