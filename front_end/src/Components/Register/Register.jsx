@@ -129,7 +129,7 @@ function Register() {
                   value={formFilds.name}
                   onChange={getFormFieldsData}
                 />
-                <div className="input__Logo">
+                <div className="register__Logo">
                   <PermIdentityIcon />
                 </div>
               </div>
@@ -143,7 +143,7 @@ function Register() {
                   value={formFilds.email}
                   onChange={getFormFieldsData}
                 />
-                <div className="input__Logo">
+                <div className="register__Logo">
                   <AlternateEmailIcon />
                 </div>
               </div>
@@ -158,7 +158,7 @@ function Register() {
                   value={formFilds.phone}
                   onChange={getFormFieldsData}
                 />
-                <div className="input__Logo">
+                <div className="register__Logo">
                   <DialpadIcon />
                 </div>
               </div>
@@ -173,7 +173,7 @@ function Register() {
                   value={formFilds.work}
                   onChange={getFormFieldsData}
                 />
-                <div className="input__Logo">
+                <div className="register__Logo">
                   <WorkOutlineIcon />
                 </div>
               </div>
@@ -188,7 +188,7 @@ function Register() {
                   value={formFilds.password}
                   onChange={getFormFieldsData}
                 />
-                <div className="input__Logo">
+                <div className="register__Logo">
                   <VisibilityIcon />
                 </div>
               </div>
@@ -203,7 +203,7 @@ function Register() {
                   value={formFilds.cPassword}
                   onChange={getFormFieldsData}
                 />
-                <div className="input__Logo">
+                <div className="register__Logo">
                   <VisibilityOffIcon />
                 </div>
               </div>
