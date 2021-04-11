@@ -1,0 +1,221 @@
+::placeholder {
+  color: white;
+  padding-left: 5px;
+  font-size: 22px;
+}
+.contect {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 80vh;
+}
+.contect__wrapper {
+  display: grid;
+  min-height: 80vh;
+  width: 90vw;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 1fr;
+  width: 100vw;
+  grid-template-areas: "content_left" " content_right ";
+}
+.contect__wrapper_left {
+  grid-area: content_left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contect__wrapper__left__details {
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+.getInTouch__heading .arrow {
+  transform: rotate(90deg);
+}
+.contect__wrapper_right {
+  grid-area: content_right;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 35px;
+}
+.contect__wrapper_right__form__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100%;
+}
+.contect__wrapper_right__form__wrapper > form {
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 0fr 2fr 1fr;
+  grid-template-areas:
+    "userName userEmail userPhone"
+    "message message message"
+    "submitButton submitButton submitButton";
+  gap: 15px 10px;
+}
+.form__name {
+  grid-area: userName;
+}
+.form__email {
+  grid-area: userEmail;
+}
+.form__phone {
+  grid-area: userPhone;
+}
+.from__message {
+  grid-area: message;
+  border: 2px solid white;
+  padding: 15px 5px;
+  border-radius: 12px;
+}
+#message {
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+  outline: none;
+  width: 100%;
+  border: none;
+}
+.form__comon_input__register {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+  outline: none;
+  padding-left: 5px;
+}
+.contect__sunmitButton {
+  grid-area: submitButton;
+  height: 7vh;
+  margin: 35px 5px 5px 5px;
+  position: relative;
+}
+#contect__submit {
+  height: 100%;
+  width: 33%;
+  background: transparent;
+  outline: none;
+  color: white;
+  border: 2px solid white;
+  border-radius: 12px;
+  font-size: 18px;
+  letter-spacing: 5px;
+  transition: 1s;
+}
+#contect__submit:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  box-shadow: 0px 8px 10px -6px rgba(255, 255, 255, 0.75);
+  border: none;
+}
+.contect__submit__arrow {
+  position: absolute;
+  top: 20%;
+  left: 28%;
+  color: white;
+  cursor: pointer;
+}
+.form__common__contect {
+  height: 7vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__comon_input {
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+  outline: none;
+  padding-left: 5px;
+}
+.contect__Logo {
+  position: absolute;
+  right: 3%;
+  top: 18%;
+  color: white;
+}
+
+@media screen and (max-width: 750px) {
+  .contect__wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 1fr;
+    grid-template-areas: "content_left " "content_right ";
+    width: 100vw;
+  }
+  .contect__wrapper__left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contect__wrapper__left__details {
+    width: 90vw;
+    margin: 0;
+    padding: 0;
+  }
+  .contect__wrapper_right__form__wrapper > form {
+    display: block;
+  }
+  .contect__wrapper__left__details h1 {
+    grid-area: content_header;
+    font-size: 50px;
+  }
+  .contect__wrapper__left__details > h1 > .arrow {
+    transform: rotate(90deg);
+  }
+  .contect__wrapper_right {
+    justify-content: center;
+    height: 62vh;
+    margin-top: 0;
+  }
+  .contect__wrapper_right__form__wrapper {
+    min-height: 50vh;
+    width: 100%;
+    margin: 0;
+  }
+  #contect__submit {
+    width: 100%;
+    letter-spacing: 8px;
+  }
+  .contect__submit__arrow {
+    color: white;
+    position: absolute;
+    top: 20%;
+    left: 85%;
+  }
+  .from__message {
+    grid-area: message;
+    height: 20vh;
+  }
+  #message {
+    border: none;
+    color: white;
+    outline: none;
+    padding-left: 5px;
+    width: 100%;
+    transition: 1s;
+  }
+}
