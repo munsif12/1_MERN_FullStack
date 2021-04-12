@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
 .home {
   position: relative;
-  min-height: 88.3vh;
+  min-height: 88.1vh;
   background: black;
   display: flex;
   justify-content: flex-start;
