@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./About.css";
+import { useHistory } from "react-router-dom";
 function About() {
+  const history = useHistory();
+  async function checkIfUserIsAuthenticated() {
+    try {
+      const response = await fetch("/about", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      const data = await response.json();
+      if (response.status === 401) {
+        history.push("/login");
+      } else {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+      history.push("/login");
+    }
+  }
+  useEffect(() => {
+    checkIfUserIsAuthenticated();
+  }, []);
   return (
     <div className="about">
       <div className="aboutDetails">
