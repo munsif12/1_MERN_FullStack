@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const Route = express.Router();
-
+const aboutMiddleWare = require("../middleware/authentication");
 //getting model of user
 const UserData = require("../schema_or_models/userSchema");
 
@@ -18,8 +18,8 @@ const checkLoginMiddleWare = (req, res, next) => {
 Route.get("/", checkLoginMiddleWare, (req, res) => {
   res.send("hello from Router the Home page");
 });
-Route.get("/about", (req, res) => {
-  res.send("hello from Router the About Page");
+Route.get("/about", aboutMiddleWare, (req, res) => {
+  res.send(req.rootUser);
 });
 
 //storing user registration data to mongodb atlas
@@ -78,6 +78,7 @@ Route.post("/register", async (req, res) => {
 });
 
 //creating a login system
+
 Route.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -101,14 +102,9 @@ Route.post("/login", async (req, res) => {
           let userToken = await checkIfUserExists.createWebTokenForUser();
           //storing the Webtoken in the cokie taka ham bad me comparision karwasaky
           res.cookie("jsonWebToken", userToken, {
-            expires: new Date(Date.now() + 50000),
+            expires: new Date(Date.now() + 1000000),
             httpOnly: true,
           });
-
-          //if emaill exist and password is true
-          // res.status(200).json({
-          //   message: "Login Successfull.",
-          // });
           res.status(200).json({
             message: "Logged In Successfully",
           });
