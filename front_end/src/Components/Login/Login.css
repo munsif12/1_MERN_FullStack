@@ -1,0 +1,206 @@
+::placeholder {
+  color: white;
+  padding-left: 5px;
+  font-size: 22px;
+}
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 80vh;
+}
+.login__content__wrapper {
+  display: grid;
+  min-height: 80vh;
+  width: 90vw;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  width: 100vw;
+  grid-template-areas: "content_left content_right ";
+}
+.login__content__wrapper_left {
+  grid-area: content_left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login__content__wrapper_right {
+  grid-area: content_right;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.login__wrapper__left__details {
+  min-height: 62vh;
+  width: 40vw;
+  color: white;
+  margin-right: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 65px;
+}
+.login__wrapper__left__details > h1 {
+  color: white;
+}
+.login__content__wrapper_right__form__wrapper {
+  min-height: 50vh;
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 12%;
+}
+.login__content__wrapper_right__form__wrapper > form {
+  width: 80%;
+  margin-top: -50px;
+}
+.loginCommon {
+  height: 7vh;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.from__wrapper_submitBtn {
+  margin-top: 45px;
+}
+.loginComon_input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 2px solid white;
+  background: transparent;
+  color: white;
+  outline: none;
+  padding-left: 5px;
+}
+.input__Logo {
+  position: absolute;
+  right: 1%;
+  top: 15%;
+  color: white;
+  background: black;
+  z-index: 999;
+}
+
+.login__registered {
+  position: relative;
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-top: -20px;
+  margin-left: 12%;
+}
+.login__register_text::before {
+  content: "";
+  position: absolute;
+  height: 8%;
+  width: 24%;
+  background-color: white;
+  top: 30%;
+  left: 12%;
+  border-radius: 18%;
+}
+.login__register_text::after {
+  content: "";
+  position: absolute;
+  height: 8%;
+  width: 24%;
+  background-color: white;
+  top: 30%;
+  right: 12%;
+  border-radius: 18%;
+}
+.login_Svg {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_Svg > svg {
+  position: relative;
+  height: 275px;
+  width: 300px;
+}
+
+@media screen and (max-width: 750px) {
+  .login__content__wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "content_left " "content_right ";
+    width: 100vw;
+  }
+  .login__content__wrapper_left {
+    justify-content: center;
+  }
+  .login__wrapper__left__details {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.3fr;
+    min-height: 50vh;
+    width: 90vw;
+    margin: 0;
+    grid-template-areas: "content_logo " " content_header ";
+  }
+  .login__wrapper__left__details > h1 {
+    grid-area: content_header;
+  }
+  .login_Svg {
+    height: 100%;
+    width: 100%;
+    grid-area: content_logo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login_Svg > svg {
+    height: 400px;
+    width: 300px;
+  }
+  .login__wrapper__left__details > h1 {
+    margin-top: 5%;
+    text-align: center;
+    font-size: 52px;
+  }
+  .login__wrapper__left__details > h1 > .arrow {
+    transform: rotate(90deg);
+  }
+  .login__content__wrapper_right {
+    justify-content: center;
+  }
+  .login__content__wrapper_right__form__wrapper {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 0;
+  }
+  .from__wrapper_submitBtn {
+    margin-top: 45px;
+  }
+  .loginCommon {
+    margin-bottom: 20px;
+  }
+  #submit {
+    width: 100%;
+    letter-spacing: 8px;
+  }
+  .submit__arrow {
+    color: white;
+    position: absolute;
+    top: 20%;
+    left: 85%;
+  }
+
+  .login__registered {
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 0;
+  }
+}
