@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginSvg from "./LoginSvg";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import "./Login.css";
 function Login() {
   const history = useHistory();
   const [formFields, setFormFields] = useState({
@@ -80,31 +86,79 @@ function Login() {
   }
   return (
     <div className="login">
-      <form method="POST">
-        <input
-          type="text"
-          name="email"
-          id="email"
-          placeholder="email"
-          value={formFields.email}
-          onChange={getFormValues}
-        />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          value={formFields.password}
-          onChange={getFormValues}
-        />
-        <input
-          type="submit"
-          value="submit"
-          name="submit"
-          id="submit"
-          onClick={submitData}
-        />
-      </form>
+      <div className="login__content__wrapper">
+        <div className="login__content__wrapper_left">
+          <div className="login__wrapper__left__details">
+            <h1>
+              Login Here {"    "}
+              <ArrowForwardIosIcon className="arrow" />
+            </h1>
+            <div className="login_Svg">
+              <LoginSvg />
+            </div>
+          </div>
+        </div>
+        <div className="login__content__wrapper_right">
+          <div className="login__content__wrapper_right__form__wrapper">
+            <form method="POST">
+              <div className="login__from__wrapper_email loginCommon">
+                <input
+                  className="loginComon_input"
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  value={formFields.email}
+                  onChange={getFormValues}
+                />
+                <div className="input__Logo">
+                  <AlternateEmailIcon />
+                </div>
+              </div>
+
+              <div className="login__from__wrapper_password loginCommon">
+                <input
+                  className="loginComon_input"
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  value={formFields.password}
+                  onChange={getFormValues}
+                />
+                <div className="input__Logo">
+                  <VisibilityOffIcon />
+                </div>
+              </div>
+
+              <div className="from__wrapper_submitBtn loginCommon">
+                <input
+                  type="submit"
+                  value="Login"
+                  name="submit"
+                  id="submit"
+                  onClick={submitData}
+                />
+                <div className="submit__arrow">
+                  <ArrowRightAltIcon />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div className="login__registered">
+            <p
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                history.push("/register");
+              }}
+              className="login__register_text"
+            >
+              Not Registered ?
+            </p>
+          </div>
+        </div>
+      </div>
+
       <ToastContainer />
     </div>
   );
