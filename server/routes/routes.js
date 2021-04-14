@@ -18,8 +18,11 @@ const checkLoginMiddleWare = (req, res, next) => {
 Route.get("/", checkLoginMiddleWare, (req, res) => {
   res.send("hello from Router the Home page");
 });
+Route.get("/contect", aboutMiddleWare, (req, res) => {
+  res.status(200).send(req.rootUser);
+});
 Route.get("/about", aboutMiddleWare, (req, res) => {
-  res.send(req.rootUser);
+  res.status(200).send(req.rootUser);
 });
 
 //storing user registration data to mongodb atlas
