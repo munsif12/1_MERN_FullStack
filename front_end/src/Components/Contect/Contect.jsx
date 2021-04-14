@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "./Contect.css";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
@@ -8,6 +9,7 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function Contect() {
+  const history = useHistory();
   const [formFilds, setFormFilds] = useState({
     name: "",
     email: "",
@@ -34,6 +36,26 @@ function Contect() {
       });
     }
   }
+  const [DbData, setDbData] = useState({});
+  async function seetUserDataToForm() {
+    const response = await fetch("/contect", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    const data = await response.json();
+    console.log(data);
+    if (response.status === 401) {
+    } else {
+      setDbData(data);
+    }
+  }
+  const { userName: name, email, phone, work } = DbData;
+  useEffect(() => {
+    seetUserDataToForm();
+  }, []);
   return (
     <div className="contect">
       <div className="contect__wrapper">
@@ -56,7 +78,7 @@ function Contect() {
                   name="name"
                   id="name"
                   placeholder="Username"
-                  value={formFilds.name}
+                  value={name}
                   onChange={getFormFieldsData}
                 />
                 <div className="contect__Logo">
@@ -70,7 +92,7 @@ function Contect() {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  value={formFilds.email}
+                  value={email}
                   onChange={getFormFieldsData}
                 />
                 <div className="contect__Logo">
@@ -85,7 +107,7 @@ function Contect() {
                   name="phone"
                   id="phone"
                   placeholder="Phone"
-                  value={formFilds.phone}
+                  value={phone}
                   onChange={getFormFieldsData}
                 />
                 <div className="contect__Logo">
