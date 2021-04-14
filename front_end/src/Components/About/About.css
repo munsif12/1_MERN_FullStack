@@ -4,3 +4,176 @@ li {
 label {
   margin-right: 10px;
 }
+.about {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+.about__wrapper {
+  display: grid;
+  min-height: 50vh;
+  width: 60vw;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "upper " "lower ";
+  margin-top: 30px;
+  box-shadow: 0px 0px 8px 2px white;
+  border-radius: 12px;
+  grid-gap: 10px;
+}
+.about__upper {
+  grid-area: upper;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 25% 1fr auto;
+  grid-template-areas: " userImg userBasicDetails editProfile ";
+  position: relative;
+  border-bottom: none;
+  border-radius: 12px 12px 0px 0px;
+  overflow: hidden;
+  box-shadow: 0px 0px 2 8px white;
+}
+.userImage {
+  grid-area: userImg;
+  height: 100%;
+  width: 100%;
+}
+.userImage img {
+  height: 100%;
+  width: 100%;
+}
+.userName__word__dbNo {
+  grid-area: userBasicDetails;
+  padding: 5px 0px 0px 15px;
+}
+.editProfile {
+  grid-area: editProfile;
+  padding: 20px 20px 0px 0px;
+}
+.editProfile__p {
+  background-color: #18ff00;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.about__lower {
+  grid-area: lower;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 25% auto 1fr;
+  grid-template-areas: " userLinks userTitles userData";
+  border-top: none;
+  border-radius: 0px 0px 12px 12px;
+  overflow: hidden;
+}
+.userHobbies__and__work {
+  grid-area: userLinks;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+}
+.userSocialLinks {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.links__common {
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+.userSocialLinks a {
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #18ff00;
+}
+.userDb__data__titles {
+  grid-area: userTitles;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.userDb__data__titles {
+  padding-left: 10px;
+}
+.user__database__data {
+  grid-area: userData;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 25%;
+}
+@media screen and (max-width: 750px) {
+  .about__wrapper {
+    display: grid;
+    /* userImg userBasicDetails editProfile   userLinks userTitles userData */
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas: "upper" "lower";
+    width: 85vw;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px 0px white;
+    margin-bottom: 20px;
+  }
+  .about__upper {
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: 1fr;
+    grid-template-areas: " userImg " "userBasicDetails " "editProfile ";
+  }
+  .userName__word__dbNo h1 {
+    font-size: 30px;
+  }
+  .userName__word__dbNo h4 {
+    font-size: 18px;
+  }
+  .userName__word__dbNo {
+    margin-top: 20px;
+  }
+  .editProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-right: 0;
+  }
+  .editProfile__p {
+    width: 90%;
+    text-align: center;
+  }
+  .about__lower {
+    grid-area: lower;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 25% auto;
+    grid-template-areas: "userTitles userData" "  userLinks userLinks ";
+    border-top: none;
+    border-radius: 0px 0px 12px 12px;
+    overflow: hidden;
+  }
+  .userHobbies__and__work {
+    min-height: auto;
+  }
+  .userSocialLinks {
+    flex-direction: row;
+    width: 100%;
+    padding: 0% 6% 0% 2%;
+  }
+  .userSocialLinks a {
+    font-size: 12px;
+  }
+  .links__common {
+    margin-left: auto;
+  }
+  .userDb__data__titles {
+    padding-left: 25%;
+  }
+  .user__database__data {
+    padding: 0;
+  }
+}
