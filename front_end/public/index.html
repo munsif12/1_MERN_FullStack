@@ -5,6 +5,8 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <!-- //animejs -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -13,7 +15,7 @@
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <title>React App</title>
+    <title>Black Live Matter</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -33,5 +35,28 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <!-- <script>
+      var letter = document.getElementsByClassName("letter");
+      console.log(letter);
+      let animation = anime({
+        targets: letter,
+        opacity: 1,
+        translateY: 0,
+        // rotate: {
+        //   value: 360,
+        //   duration: 1000,
+        //   easing: 'easeInExpo'
+        // },
+        // scale: anime.stagger([0.7, 1], {from: 'center'}),
+        // delay: anime.stagger(200, {start: 1000}),
+        // translateX: [-10, 30],
+        loop: true,
+        translateX: 10,
+        delay: anime.stagger(300, { start: 500 }),
+        fontSize: 32,
+      });
+    </script> -->
+    <script src="anime.min.js"></script>
   </body>
 </html>
