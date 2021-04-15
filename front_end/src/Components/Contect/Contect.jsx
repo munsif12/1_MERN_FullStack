@@ -16,6 +16,12 @@ function Contect() {
     phone: "",
     message: "",
   });
+  const [getAuthenticUserData, setGetAuthenticUserData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   function getFormFieldsData(e) {
     const fieldValue = e.target.value;
     const fieldName = e.target.name;
@@ -23,20 +29,22 @@ function Contect() {
   }
   async function submitData(e) {
     e.preventDefault();
-    const { name, email, phone } = formFilds;
-    if (!name || !email || !phone) {
-      toast.error(`🦄 All fields are mandatory to be Filled`, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
+    const { name, email, phone, message } = formFilds;
+    // if (!name || !email || !phone || !message) {
+    //   toast.error(`🦄 All fields are mandatory to be Filled`, {
+    //     position: "top-center",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //   });
+    // } else {
+    console.log(`${name} ${email} ${phone} ${message}`);
+    // }
   }
-  const [DbData, setDbData] = useState({});
+  const [dbData, setDbData] = useState({});
   async function seetUserDataToForm() {
     const response = await fetch("/contect", {
       method: "GET",
@@ -47,12 +55,14 @@ function Contect() {
     });
     const data = await response.json();
     console.log(data);
-    if (response.status === 401) {
-    } else {
-      setDbData(data);
-    }
+    setDbData({
+      ...dbData,
+      userName: data.userName,
+      email: data.email,
+      phone: data.phone,
+    });
   }
-  const { userName: name, email, phone, work } = DbData;
+  const { userName: name, email, phone } = dbData;
   useEffect(() => {
     seetUserDataToForm();
   }, []);
