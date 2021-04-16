@@ -47,6 +47,14 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  messages: [
+    {
+      message: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   //tokens is array of objects becoz user can login multiple times isleya jab b woh login kry ga uska leya 1 token generate hoga or wo tokens ma save hoga
   tokens: [
     {
@@ -99,6 +107,17 @@ userSchema.methods.createWebTokenForUser = async function () {
   }
 };
 
+// saving the user Messsage from contect us form if userIs authentic
+userSchema.methods.saveUsersMessage = async function (message) {
+  try {
+    console.log("In user MEssages");
+    this.messages = this.messages.concat({ message });
+    await this.save();
+    return this.messages;
+  } catch (error) {
+    console.log(error);
+  }
+};
 //creating model mtlab single user ka data {name:"sdsd",age:"etc"..etc}
 const UsersData = mongoose.model("usersData", userSchema); //("tablename",schemaname)
 
