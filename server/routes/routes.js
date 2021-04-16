@@ -4,6 +4,7 @@ const Route = express.Router();
 const aboutMiddleWare = require("../middleware/authentication");
 //getting model of user
 const UserData = require("../schema_or_models/userSchema");
+const { response } = require("express");
 
 //adding a middle ware mtlab agr koi functionality perofrm krwany sa pahly kuch krwana hoto yani mtlab agr user direclty about page acces krrha h to check kro ka uskaalogin keya h k nhi pahly
 //responce ko pany sa pahly agr koi functionality krwanii hoto middle warre use hota ha
@@ -18,8 +19,27 @@ const checkLoginMiddleWare = (req, res, next) => {
 Route.get("/", checkLoginMiddleWare, (req, res) => {
   res.send("hello from Router the Home page");
 });
-Route.get("/contect", aboutMiddleWare, (req, res) => {
+//user ka name email or phone databse sa uthow or form ke fields ma set krdo
+Route.get("/contect-user", aboutMiddleWare, (req, res) => {
   res.status(200).send(req.rootUser);
+});
+Route.post("/contect", aboutMiddleWare, async (req, res) => {
+  const { message, email } = req.body;
+
+  const checkIfUserExists = await UserData.findOne({ email });
+  if (checkIfUserExists) {
+    const saveUserMessageToDatabase = await checkIfUserExists.saveUsersMessage(
+      message
+    );
+    if (!saveUserMessageToDatabase) {
+      res.status(500).json({ message: "data is not saved" });
+    } else {
+      await checkIfUserExists.save();
+      res.status(201).json({ message: "Your Feedback has been saved" });
+    }
+  } else {
+    res.status(502).json({ message: "User is not exist with this email" });
+  }
 });
 Route.get("/about", aboutMiddleWare, (req, res) => {
   res.status(200).send(req.rootUser);
