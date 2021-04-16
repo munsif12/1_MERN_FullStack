@@ -1,7 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const app = express();
-
+//cookie parser apka cookies ko reqest ma dalta h ise error ke waja sa 1 project miss hua or aj time b bht laga
+var cookieParser = require("cookie-parser");
+app.use(cookieParser());
 //dotenv ka filePath app ko batanay kaleya
 dotenv.config({ path: "./config.env" });
 //settingn up connection by requiring the connetion file the connection functionality is performed in connection.js file
