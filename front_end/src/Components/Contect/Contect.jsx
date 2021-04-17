@@ -16,12 +16,6 @@ function Contect() {
     phone: "",
     message: "",
   });
-  const [getAuthenticUserData, setGetAuthenticUserData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
   function getFormFieldsData(e) {
     const fieldValue = e.target.value;
     const fieldName = e.target.name;
@@ -30,23 +24,67 @@ function Contect() {
   async function submitData(e) {
     e.preventDefault();
     const { name, email, phone, message } = formFilds;
-    // if (!name || !email || !phone || !message) {
-    //   toast.error(`🦄 All fields are mandatory to be Filled`, {
-    //     position: "top-center",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    // } else {
-    console.log(`${name} ${email} ${phone} ${message}`);
-    // }
+    if (!name || !email || !phone || !message) {
+      toast.error(`🦄 All fields are mandatory to be Filled`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      const response = await fetch("/contect", {
+        method: "POST",
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          message,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const resultOfcontectusResponse = await response.json();
+      if (response.status === (500 || 502) || !resultOfcontectusResponse) {
+        toast.error(
+          `🦄 ${
+            resultOfcontectusResponse.message ||
+            "somthing went wrong check you field"
+          }`,
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+      } else {
+        toast.success(
+          `🦄 ${
+            resultOfcontectusResponse.message ||
+            "somthing went wrong check you field"
+          }`,
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+      }
+    }
   }
-  const [dbData, setDbData] = useState({});
-  async function seetUserDataToForm() {
-    const response = await fetch("/contect", {
+  async function setUserDataToForm() {
+    const response = await fetch("/contect-user", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -55,16 +93,16 @@ function Contect() {
     });
     const data = await response.json();
     console.log(data);
-    setDbData({
-      ...dbData,
-      userName: data.userName,
+    setFormFilds({
+      ...formFilds,
+      name: data.userName,
       email: data.email,
       phone: data.phone,
     });
   }
-  const { userName: name, email, phone } = dbData;
+  const { name, email, phone } = formFilds;
   useEffect(() => {
-    seetUserDataToForm();
+    setUserDataToForm();
   }, []);
   return (
     <div className="contect">
