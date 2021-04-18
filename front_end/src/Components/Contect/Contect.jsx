@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import "./Contect.css";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
@@ -9,7 +8,6 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function Contect() {
-  const history = useHistory();
   const [formFilds, setFormFilds] = useState({
     name: "",
     email: "",
@@ -50,9 +48,8 @@ function Contect() {
       const resultOfcontectusResponse = await response.json();
       if (response.status === (500 || 502) || !resultOfcontectusResponse) {
         toast.error(
-          `🦄 ${
-            resultOfcontectusResponse.message ||
-            "somthing went wrong check you field"
+          `🦄 ${resultOfcontectusResponse.message ||
+          "somthing went wrong check you field"
           }`,
           {
             position: "top-center",
@@ -66,9 +63,8 @@ function Contect() {
         );
       } else {
         toast.success(
-          `🦄 ${
-            resultOfcontectusResponse.message ||
-            "somthing went wrong check you field"
+          `🦄 ${resultOfcontectusResponse.message ||
+          "somthing went wrong check you field"
           }`,
           {
             position: "top-center",
