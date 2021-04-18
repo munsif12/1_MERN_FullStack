@@ -99,6 +99,7 @@ function Contect() {
   const { name, email, phone } = formFilds;
   useEffect(() => {
     setUserDataToForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="contect">
