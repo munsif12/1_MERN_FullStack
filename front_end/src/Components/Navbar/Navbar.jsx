@@ -1,14 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { NavLink } from "react-router-dom";
 import anime from "animejs/lib/anime.es.js";
 function Navbar() {
+  const [globalUserName, setGlobalUserName] = useState("");
+  async function setUserDataToForm() {
+    const response = await fetch("/contect-user", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    setGlobalUserName(data.userName);
+  }
   useEffect(() => {
+    setUserDataToForm();
     anime({
       targets: ".navbar_logo",
       opacity: 1,
-      translateX: 30,
+      translateX: 10,
       duration: 3000,
       // direction: "alternate",
     });
@@ -18,12 +31,7 @@ function Navbar() {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink className="navbar-brand navbar_logo" to="##">
-          <span className="letter">M</span>
-          <span className="letter">U</span>
-          <span className="letter">N</span>
-          <span className="letter">S</span>
-          <span className="letter">I</span>
-          <span className="letter">F</span>
+          <h2>{!globalUserName ? "BLM" : `${globalUserName}`}</h2>
         </NavLink>
         <button
           className="navbar-toggler"
@@ -88,6 +96,16 @@ function Navbar() {
                 activeClassName="activeClass"
               >
                 Register
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                exact
+                className="nav-link common"
+                to="/logout"
+                activeClassName="activeClass"
+              >
+                Logout
               </NavLink>
             </li>
           </ul>
