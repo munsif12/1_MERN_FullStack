@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,8 +7,11 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import { loginLogoutContext } from "../../App"
 import "./Login.css";
 function Login() {
+  const { dispatch } = useContext(loginLogoutContext)
+  console.log(dispatch)
   const history = useHistory();
   const [formFields, setFormFields] = useState({
     email: "",
@@ -79,6 +82,7 @@ function Login() {
         draggable: true,
         progress: undefined,
       });
+      dispatch({ type: "login", payload: true })
       setTimeout(() => {
         history.push("/");
       }, 2000);
