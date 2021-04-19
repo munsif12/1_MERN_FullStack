@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-
+import { loginLogoutContext } from "../../App"
 function Logout() {
     const history = useHistory();
+    const { dispatch } = useContext(loginLogoutContext)
     React.useEffect(() => {
         fetch("/logout", {
             method: "GET",
@@ -13,9 +14,7 @@ function Logout() {
         })
             .then(res => {
                 history.push("/login", { replace: true })
-                if (res.status !== 200) {
-                    alert("cookies not cleared")
-                }
+                dispatch({ type: "logout", payload: false })
             })
             .catch((error) => console.log(error));
 
