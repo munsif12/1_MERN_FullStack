@@ -11,7 +11,6 @@ import { loginLogoutContext } from "../../App"
 import "./Login.css";
 function Login() {
   const { dispatch } = useContext(loginLogoutContext)
-  console.log(dispatch)
   const history = useHistory();
   const [formFields, setFormFields] = useState({
     email: "",
@@ -109,6 +108,7 @@ function Login() {
                 <input
                   className="loginComon_input"
                   type="text"
+                  autoFocus="true"
                   name="email"
                   id="email"
                   placeholder="Email"
