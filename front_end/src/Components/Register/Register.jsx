@@ -123,6 +123,8 @@ function Register() {
                 <input
                   className="comon_input"
                   type="text"
+                  autoComplete="none"
+                  autoFocus="true"
                   name="name"
                   id="name"
                   placeholder="Username"
@@ -137,6 +139,7 @@ function Register() {
                 <input
                   className="comon_input"
                   type="text"
+                  autoComplete="none"
                   name="email"
                   id="email"
                   placeholder="Email"
@@ -167,6 +170,7 @@ function Register() {
                 <input
                   className="comon_input"
                   type="text"
+                  autoComplete="none"
                   name="work"
                   id="work"
                   placeholder="Work"
@@ -181,7 +185,7 @@ function Register() {
               <div className="from__wrapper_password common">
                 <input
                   className="comon_input"
-                  type="text"
+                  type="password"
                   name="password"
                   id="password"
                   placeholder="Password"
@@ -196,7 +200,7 @@ function Register() {
               <div className="from__wrapper_cPassword common">
                 <input
                   className="comon_input"
-                  type="text"
+                  type="password"
                   name="cPassword"
                   id="cPassword"
                   placeholder="Confirm Password"
