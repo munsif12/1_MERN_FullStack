@@ -1,4 +1,4 @@
-let initialState = null;
+let initialState = false;
 const reducer = (state, action) => {
   if (action.type === "login") {
     return action.payload;
