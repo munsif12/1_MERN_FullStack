@@ -17,17 +17,20 @@ function About() {
       });
       const data = await response.json();
       if (response.status === 401) {
+        console.log("pleaes login first")
         history.push("/login");
       } else {
-        data ? setSserDbData(data) : alert("not valid data");
+        data ? setSserDbData(data) : (setSserDbData({}))
       }
     } catch (error) {
       console.log(error);
+      console.log("pleaes login first")
       history.push("/login");
     }
   }
   useEffect(() => {
     checkIfUserIsAuthenticated();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { _id: id, userName: name, email, phone, work, date } = userDbData;
   return (
