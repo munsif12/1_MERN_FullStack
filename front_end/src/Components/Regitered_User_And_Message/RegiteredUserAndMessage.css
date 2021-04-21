@@ -1,0 +1,23 @@
+.reg_user_and_feedback {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 80vh;
+}
+.reg_feeback_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  width: 90vw;
+  flex-wrap: wrap;
+  gap: 5px;
+  color: white;
+}
+.user {
+  background: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: black;
+}
