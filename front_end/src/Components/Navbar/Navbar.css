@@ -1,22 +1,68 @@
 nav {
   background: linear-gradient(280deg, white, black);
 }
-#bootstrap__overide_css_for__Navbar .navbar_logo {
-  font-size: 32px;
-  color: white;
-  letter-spacing: 4px;
-  font-weight: bold;
-  margin-left: 1%;
-  transform: translateX(-200px);
-}
+
 #bootstrap__overide_css_for__Navbar ul {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+#bootstrap__overide_css_for__Navbar #navbar__logo {
+  color: white;
+  animation: nav__links 0.5s linear forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+  margin-left: 25px;
+}
+@keyframes nav__links {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
 #bootstrap__overide_css_for__Navbar li {
   margin: 0px 10px 0px 10px;
 }
+#bootstrap__overide_css_for__Navbar ul li #_1 {
+  --i: 1;
+}
+#bootstrap__overide_css_for__Navbar ul li #_2 {
+  --i: 2;
+}
+#bootstrap__overide_css_for__Navbar ul li #_3 {
+  --i: 3;
+}
+#bootstrap__overide_css_for__Navbar #_4 {
+  --i: 4;
+}
+#bootstrap__overide_css_for__Navbar ul li #_5 {
+  --i: 5;
+}
+#bootstrap__overide_css_for__Navbar ul li #_1,
+#_2,
+#_3,
+#_4,
+#_5 {
+  animation: ease-out;
+  animation: nav__links 0.5s ease-out forwards;
+  animation-delay: calc(0.2s * var(--i));
+  opacity: 0;
+}
+@keyframes nav__links {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
 #bootstrap__overide_css_for__Navbar .common {
   padding: 0px 5px 0px 5px;
   color: black;
@@ -38,4 +84,21 @@ nav {
   background: black;
   width: 100%;
   bottom: -5%;
+}
+#bootstrap__overide_css_for__Navbar #logout__btn {
+  background: black;
+  background: black;
+  color: white;
+  border-radius: 15px;
+  padding: 5px 20px;
+  letter-spacing: 5px;
+  font-size: 20px;
+  transition: 1s;
+}
+#bootstrap__overide_css_for__Navbar #logout__btn:hover {
+  background-color: transparent;
+  color: black;
+  font-weight: bold;
+  box-shadow: inset 0px 8px 10px -6px rgba(112, 109, 109, 0.75);
+  border: none;
 }
