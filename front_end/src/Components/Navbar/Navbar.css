@@ -14,6 +14,9 @@ nav {
   opacity: 0;
   margin-left: 25px;
 }
+#bootstrap__overide_css_for__Navbar #navbar__logo h2::first-letter {
+  text-transform: uppercase;
+}
 @keyframes nav__links {
   0% {
     transform: translateX(-200px);
