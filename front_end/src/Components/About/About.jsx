@@ -17,14 +17,11 @@ function About() {
       });
       const data = await response.json();
       if (response.status === 401) {
-        console.log("pleaes login first")
         history.push("/login");
       } else {
         data ? setSserDbData(data) : (setSserDbData({}))
       }
     } catch (error) {
-      console.log(error);
-      console.log("pleaes login first")
       history.push("/login");
     }
   }
