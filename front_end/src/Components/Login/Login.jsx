@@ -6,6 +6,7 @@ import LoginSvg from "./LoginSvg";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import { loginLogoutContext } from "../../App"
 import "./Login.css";
@@ -16,6 +17,7 @@ function Login() {
     email: "",
     password: "",
   });
+  const [TogglePassword, setTogglePassword] = useState(true)
   function getFormValues(e) {
     const fieldName = e.target.name;
     const filedValue = e.target.value;
@@ -29,7 +31,7 @@ function Login() {
     const { email, password } = formFields;
     if (!email || !password) {
       //join be field empty na ho
-      toast.error(`🦄 All fields are mandatory to be Filled`, {
+      toast.error(`😠  All fields are Mandatory to be Filled`, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -44,7 +46,8 @@ function Login() {
     method :=> ham bata ha ka ham kya krna chahrhy ha like data save ya delete ya update etc (put,patch,post,delete)
     headers :=> hamy document ka type batay ha like (content-type:Text/plain)(content-type:applicaton/json
     body :=> isma hamara data hota ha joham frontend sa backend pa send krrhy hoty h 
-    json.stringify :=> [ body:json.stringify({ your js data here }) ] ya hamary javascript ko json ma convert karta ha q ka server sirf json data ko smajta h not javascript server sa bat krwany ka leya ya json ya xml use hote ha or hamjson use krrhy ha */ const response = await fetch(
+    json.stringify :=> [ body:json.stringify({ your js data here }) ] ya hamary javascript ko json ma convert karta ha q ka server sirf json data ko smajta h not javascript server sa bat krwany ka leya ya json ya xml use hote ha or hamjson use krrhy ha */
+    const response = await fetch(
       "/login",
       {
         method: "POST",
@@ -59,8 +62,8 @@ function Login() {
     );
     //jo reponse hamay pas arha h usko js ma convert krrhy ha ham
     const data = await response.json();
-    if (response.status === (502 || 422) || typeof data === "undefined") {
-      toast.error(`🦄 ${data.message}`, {
+    if ([422, 502].includes(response.status) || typeof data === "undefined") {
+      toast.error(`😢  ${data.message}`, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -72,7 +75,7 @@ function Login() {
     } else if (response.status === 200) {
       // alert(data.message); //alert ka sath to history.push kam krrha ha mtlabb alert ka wait krta ha then net page pa
       // jata h lakin toastify ma direct he push page pa challa jata without notify keya huay
-      await toast.success(` ${data.message}`, {
+      await toast.success(`🙂 ${data.message}`, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -123,15 +126,16 @@ function Login() {
               <div className="login__from__wrapper_password loginCommon">
                 <input
                   className="loginComon_input"
-                  type="password"
+                  type={TogglePassword ? "password" : "text"}
                   name="password"
                   id="password"
                   placeholder="Password"
                   value={formFields.password}
                   onChange={getFormValues}
+                  autoComplete="off"
                 />
-                <div className="input__Logo">
-                  <VisibilityOffIcon />
+                <div className="input__Logo" style={{ cursor: "pointer" }}>
+                  {TogglePassword ? <VisibilityOffIcon onClick={() => setTogglePassword(false)} /> : <VisibilityIcon onClick={() => setTogglePassword(true)} />}
                 </div>
               </div>
 
