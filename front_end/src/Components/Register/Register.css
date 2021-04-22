@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 80vh;
+  min-height: 81.5vh;
 }
 .content__wrapper {
   display: grid;
