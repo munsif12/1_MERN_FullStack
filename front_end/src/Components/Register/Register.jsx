@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,6 +14,23 @@ import "./Register.css";
 import RegisterSvg from "./RegisterSvg";
 function Register() {
   const history = useHistory();
+  //reducer which is use toggle the password visiblity
+  /* pahly manu try keua ka 1 use reducer ka sath password le visiblity ko 
+  toggle kru but woh nhi horha tha jab Cpassword ke visiblity true hote to 
+  password ke visiblity false hotjate the  masla 1 useSate use krny ke waja sa arha tha 
+  iselyea abmany 1 usestate or dustra useReducer sa keya done alag alag useState sa hosakty thy
+  lakin UseReducer kafee din sa practice nhi keya tha isleya (password)  ko useReducer sa kar deya*/
+  const reducer = (state, action) => {
+    if (action.type === "cPassword") {
+      return action.payload
+    }
+    else if (action.type === "password") {
+      return action.payload
+    }
+    return state;
+  }
+  const [state, dispatch] = useReducer(reducer, false);
+  const [TogglePassword, setTogglePassword] = useState(true)
   const [formFilds, setFormFilds] = useState({
     name: "",
     email: "",
@@ -31,7 +48,7 @@ function Register() {
     e.preventDefault();
     const { name, email, phone, work, password, cPassword } = formFilds;
     if (!name || !email || !phone || !work || !password || !cPassword) {
-      toast.error(`🦄 All fields are mandatory to be Filled`, {
+      toast.error(`😠  All fields are Mandatory to be Filled`, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -65,13 +82,13 @@ function Register() {
     const data = await response.json();
     console.log(response.status);
     if (
-      response.status === (502 || 422) ||
+      [422, 502].includes(response.status) ||
       typeof data === "undefined" ||
       !data
     ) {
       // alert(res.message);
       toast.error(
-        `🦄 ${data.message || "somthing went wrong check you field"}`,
+        `😢  ${data.message || "Phone Field Should Be A Number Type"}`,
         {
           position: "top-center",
           autoClose: 5000,
@@ -86,7 +103,7 @@ function Register() {
     } else if (response.status === 200) {
       // alert(res.message); /* alert ka sath to history.push kam krrha ha mtlabb alert ka wait krta ha then net page pa jata h
       /*lakin toastify ma direct he push page pa challa jata without notify keya huay  SETIMEOUT WalA JUGAR NEaCHY LAGA H*/
-      toast.success(`${data.message}`, {
+      toast.success(` 🙂  ${data.message}`, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -150,7 +167,6 @@ function Register() {
                   <AlternateEmailIcon />
                 </div>
               </div>
-
               <div className="from__wrapper_phone common">
                 <input
                   className="comon_input"
@@ -165,7 +181,6 @@ function Register() {
                   <DialpadIcon />
                 </div>
               </div>
-
               <div className="from__wrapper_work common">
                 <input
                   className="comon_input"
@@ -185,30 +200,32 @@ function Register() {
               <div className="from__wrapper_password common">
                 <input
                   className="comon_input"
-                  type="password"
+                  type={!state ? "password" : "text"}
                   name="password"
                   id="password"
                   placeholder="Password"
                   value={formFilds.password}
                   onChange={getFormFieldsData}
+                  autoComplete="off"
                 />
-                <div className="register__Logo">
-                  <VisibilityIcon />
+                <div className="register__Logo" style={{ cursor: "pointer" }} >
+                  {state ? <VisibilityIcon onClick={() => dispatch({ type: "password", payload: false })} /> : <VisibilityOffIcon onClick={() => dispatch({ type: "password", payload: true })} />}
                 </div>
               </div>
 
               <div className="from__wrapper_cPassword common">
                 <input
                   className="comon_input"
-                  type="password"
+                  type={TogglePassword ? "password" : "text"}
                   name="cPassword"
                   id="cPassword"
                   placeholder="Confirm Password"
                   value={formFilds.cPassword}
                   onChange={getFormFieldsData}
+                  autoComplete="off"
                 />
-                <div className="register__Logo">
-                  <VisibilityOffIcon />
+                <div className="register__Logo" style={{ cursor: "pointer" }} >
+                  {TogglePassword ? <VisibilityOffIcon onClick={() => setTogglePassword(false)} /> : <VisibilityIcon onClick={() => setTogglePassword(true)} />}
                 </div>
               </div>
 
