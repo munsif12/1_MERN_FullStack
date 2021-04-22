@@ -23,7 +23,7 @@ function Contect() {
     e.preventDefault();
     const { name, email, phone, message } = formFilds;
     if (!name || !email || !phone || !message) {
-      toast.error(`🦄 All fields are mandatory to be Filled`, {
+      toast.error(`😠  All fields are Mandatory to be Filled`, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -46,9 +46,9 @@ function Contect() {
         },
       });
       const resultOfcontectusResponse = await response.json();
-      if (response.status === (500 || 502) || !resultOfcontectusResponse) {
+      if ([401, 500, 502].includes(response.status) || !resultOfcontectusResponse) {
         toast.error(
-          `🦄 ${resultOfcontectusResponse.message ||
+          `😢  ${resultOfcontectusResponse.message ||
           "somthing went wrong check you field"
           }`,
           {
@@ -63,7 +63,7 @@ function Contect() {
         );
       } else {
         toast.success(
-          `🦄 ${resultOfcontectusResponse.message ||
+          `🙂 ${resultOfcontectusResponse.message + "sdsds" ||
           "somthing went wrong check you field"
           }`,
           {
@@ -88,7 +88,6 @@ function Contect() {
       credentials: "include",
     });
     const data = await response.json();
-    console.log(data);
     setFormFilds({
       ...formFilds,
       name: data.userName,
