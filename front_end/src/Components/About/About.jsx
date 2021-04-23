@@ -48,7 +48,7 @@ function About() {
               <h4 className="userDateOfRegistertion__h5">
                 {date}
                 {/* {date.slice(0, 10)} <br />{" "} => both are working but when i restart server they just throe errror*/}
-                {/* {date.slice(10, date.length).split("T")} => both are working but when i restart server they just throe errror*/}
+                {/* {date.slice(10, date.length).split("T")} => both are working but when I restart server they just throe errror*/}
               </h4>
             </div>
           </div>
