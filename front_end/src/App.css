@@ -1,6 +1,5 @@
 .App {
   min-height: 80vh;
-  border: 1px solid black;
   background: black;
   overflow-x: hidden;
 }
