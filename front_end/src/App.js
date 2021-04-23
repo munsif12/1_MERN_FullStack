@@ -1,52 +1,24 @@
+import { createContext, useReducer } from "react";
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
-import { Switch, Route, useLocation } from "react-router-dom";
-import Home from "./Components/Home/Home";
-import About from "./Components/About/About";
-import Contect from "./Components/Contect/Contect";
-import Login from "./Components/Login/Login";
-import Register from "./Components/Register/Register";
+import { useLocation } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
-import ErrorPage from "./Components/ErrorPage/ErrorPage";
-import Logout from "./Components/Logout/Logout";
-
+import Routes from "./Components/Routes/Routes";
+import { initialState, reducer } from "./Components/Reducer/Reducer";
+const loginLogoutContext = createContext();
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const location = useLocation();
   return (
     <div className="App" id="bootstrap__overide_css_for__Navbar">
-      <Navbar />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-
-        <Route exact path="/about">
-          <About />
-        </Route>
-
-        <Route exact path="/contect">
-          <Contect />
-        </Route>
-
-        <Route exact path="/login">
-          <Login />
-        </Route>
-
-        <Route exact path="/register">
-          <Register />
-        </Route>
-
-        <Route exact path="/logout">
-          <Logout />
-        </Route>
-        {/* if path not exists then show the error page */}
-        <Route>
-          <ErrorPage />
-        </Route>
-      </Switch>
+      <loginLogoutContext.Provider value={{ state, dispatch }}>
+        <Navbar />
+        <Routes />
+      </loginLogoutContext.Provider>
       {location.pathname === "/" ? null : <Footer />}
     </div>
   );
 }
 
 export default App;
+export { loginLogoutContext };
