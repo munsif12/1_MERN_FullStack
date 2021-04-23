@@ -19,7 +19,7 @@ function About() {
       if (response.status === 401) {
         history.push("/login");
       } else {
-        data ? setSserDbData(data) : (setSserDbData({}))
+        data ? setSserDbData(data) : setSserDbData({});
       }
     } catch (error) {
       history.push("/login");
@@ -45,7 +45,11 @@ function About() {
               <h4 className="userWork__h4">{work}</h4>
             </div>
             <div className="userDateOfRegistertion">
-              <h4 className="userDateOfRegistertion__h5">{date}</h4>
+              <h4 className="userDateOfRegistertion__h5">
+                {date}
+                {/* {date.slice(0, 10)} <br />{" "} => both are working but when i restart server they just throe errror*/}
+                {/* {date.slice(10, date.length).split("T")} => both are working but when i restart server they just throe errror*/}
+              </h4>
             </div>
           </div>
           <div className="editProfile">
