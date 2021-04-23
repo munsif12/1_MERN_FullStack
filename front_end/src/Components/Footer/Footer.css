@@ -13,13 +13,13 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  transition: 0.5s;
 }
-.folloeMeLogos :hover a {
-  color: blue;
+.folloeMeLogos :is(.linkedInLogo a svg, .twitterLogo a svg, .githubLogo a svg) {
+  transition: 0.5s;
 }
-.folloeMeLogos a {
-  color: black;
-  transition: 0.5s ease-in;
+.folloeMeLogos div:hover a svg {
+  transform: scale(1.5);
 }
 .folloeMeLogos a {
   height: 5vh;
