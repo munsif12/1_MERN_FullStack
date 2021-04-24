@@ -2,22 +2,159 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 80vh;
+  min-height: 81.5vh;
 }
 .reg_feeback_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
   width: 90vw;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 15px 20px;
   color: white;
+  margin-top: 50px;
+  /* min-height: 80vh; */
 }
 .user {
-  background: lightblue;
+  background: white;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   color: black;
+  padding: 5px;
+  min-width: 300px;
+  border-radius: 12px;
+  transition: 0.6s;
+  position: relative;
+  overflow: hidden;
+}
+.user:hover {
+  box-shadow: 3px 2px 12px 0px rgba(255, 255, 255, 0.89);
+}
+.userImg {
+  min-width: 50px;
+  min-height: 50px;
+  background: green;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+.userImg > p {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+}
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.r_user_name {
+  font-weight: 700;
+}
+.r_user_name::first-letter {
+  text-transform: uppercase;
+}
+.r_user_email {
+  font-weight: 500;
+}
+.userDetails p {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.removeUser {
+  position: absolute;
+  top: -4%;
+  right: 0;
+  margin: 2px;
+  cursor: pointer;
+  z-index: 20;
+}
+.removerUserNo {
+  position: absolute;
+  bottom: 4%;
+  right: 2px;
+  margin: 2px;
+  cursor: pointer;
+  border: 2px solid green;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2px;
+}
+.removerUserNo > p {
+  margin: 0;
+  padding: 0;
+  color: green;
+  font-size: 10px;
+  font-weight: 900;
+  text-align: center;
+}
+.userContectMessage {
+  position: absolute;
+  right: 0;
+  bottom: -100%;
+  transition: 0.6s;
+  background: rgba(0, 0, 0);
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+}
+.userContectMessage h5 {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 15px;
+}
+.userContectMessage h5::first-letter {
+  text-transform: uppercase;
+}
+.userContectMessage .message {
+  color: white;
+  font-size: 13px;
+}
+.user:hover .userContectMessage {
+  bottom: 0%;
+}
+.reset {
+  color: white;
+  position: absolute;
+  top: 10%;
+  left: 0%;
+  display: none;
+  transition: 0.6s;
+}
+.reset button {
+  padding: 10px 22px;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 12px;
+  letter-spacing: 2px;
+}
+@media screen and (max-width: 450px) {
+  .reg_feeback_wrapper {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  .user {
+    min-width: 320px;
+  }
+  .userImg {
+    margin-right: 15px;
+  }
+  .reset {
+    margin-left: 27px;
+  }
 }
