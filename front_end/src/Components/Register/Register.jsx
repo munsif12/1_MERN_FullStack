@@ -80,7 +80,6 @@ function Register() {
     });
     //jo reponse hamay pas arha h usko js ma convert krrhy ha ham
     const data = await response.json();
-    console.log(response.status);
     if (
       [422, 502].includes(response.status) ||
       typeof data === "undefined" ||
@@ -99,7 +98,6 @@ function Register() {
           progress: undefined,
         }
       );
-      console.log("inside error");
     } else if (response.status === 200) {
       // alert(res.message); /* alert ka sath to history.push kam krrha ha mtlabb alert ka wait krta ha then net page pa jata h
       /*lakin toastify ma direct he push page pa challa jata without notify keya huay  SETIMEOUT WalA JUGAR NEaCHY LAGA H*/
