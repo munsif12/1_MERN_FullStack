@@ -46,10 +46,14 @@ function Contect() {
         },
       });
       const resultOfcontectusResponse = await response.json();
-      if ([401, 500, 502].includes(response.status) || !resultOfcontectusResponse) {
+      if (
+        [401, 500, 502].includes(response.status) ||
+        !resultOfcontectusResponse
+      ) {
         toast.error(
-          `😢  ${resultOfcontectusResponse.message ||
-          "somthing went wrong check you field"
+          `😢  ${
+            resultOfcontectusResponse.message ||
+            "somthing went wrong check you field"
           }`,
           {
             position: "top-center",
@@ -63,8 +67,9 @@ function Contect() {
         );
       } else {
         toast.success(
-          `🙂 ${resultOfcontectusResponse.message + "sdsds" ||
-          "somthing went wrong check you field"
+          `🙂 ${
+            resultOfcontectusResponse.message ||
+            "somthing went wrong check you field"
           }`,
           {
             position: "top-center",
