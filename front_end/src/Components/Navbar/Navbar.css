@@ -105,3 +105,8 @@ nav {
   box-shadow: inset 0px 8px 10px -6px rgba(112, 109, 109, 0.75);
   border: none;
 }
+@media screen and (max-width: 450px) {
+  #bootstrap__overide_css_for__Navbar #logout__btn {
+    margin-top: 10px;
+  }
+}

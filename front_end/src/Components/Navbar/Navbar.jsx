@@ -18,7 +18,7 @@ function Navbar() {
   }
   useEffect(() => {
     setUserDataToForm();
-    // === !== != >= <= <> += 
+    // === !== != >= <= <> +=
   });
 
   return (
