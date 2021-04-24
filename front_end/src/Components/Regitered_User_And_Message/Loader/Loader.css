@@ -1,0 +1,62 @@
+.LoaderForAllRegisteredUsers {
+  min-height: 81.5vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 72px;
+}
+.LoaderForAllRegisteredUsers > h2 {
+  margin-right: 12px;
+}
+
+.LoaderForAllRegisteredUsers > span {
+  font-size: 100px;
+  margin-top: -40px;
+}
+.s1 {
+  animation: s1 1s linear infinite;
+  animation-delay: 0.1s;
+}
+@keyframes s1 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.s2 {
+  animation: s1 1s linear infinite;
+  animation-delay: 0.3s;
+}
+@keyframes s1 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.s3 {
+  animation: s1 1s linear infinite;
+  animation-delay: 0.5s;
+}
+@keyframes s1 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
