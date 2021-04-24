@@ -5,32 +5,17 @@ import SvgBlackLiveMatter from "./SvgBlackLiveMatter";
 import anime from "animejs/lib/anime.es.js";
 
 function Home() {
-  // anime({
-  //   targets: "h1",
-  //   translateX: 250,
-  // });
   useEffect(() => {
+
     anime({
       targets: "h1",
-      translateX: 30,
-      duration: 2000,
-      loop: true,
-      direction: "alternate",
-      opacity: 0.8,
+      scale: [0.3, 1],
+      opacity: [0, 1],
+      easing: "easeOutExpo",
+      duration: 3000,
+      delay: 1200
     });
   });
-  // anime({
-  //   targets: "h1",
-  //   translateX: 270,
-  //   direction: "alternate",
-  //   loop: true,
-  //   delay: function (el, i, l) {
-  //     return i * 100;
-  //   },
-  //   endDelay: function (el, i, l) {
-  //     return (l - i) * 100;
-  //   },
-  // });
   return (
     <div className="home">
       <div className="home__content">
