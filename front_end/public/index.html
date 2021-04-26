@@ -14,12 +14,58 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="index.css" />
 
     <title>Black Live Matter</title>
+    <style>
+      .lds-ring {
+        display: inline-block;
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+      }
+      .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        margin: 8px;
+        border: 10px solid black;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: black transparent transparent transparent;
+      }
+      .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+      }
+      .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+      }
+      .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+      }
+      @keyframes lds-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -36,27 +82,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
-    <!-- <script>
-      var letter = document.getElementsByClassName("letter");
-      console.log(letter);
-      let animation = anime({
-        targets: letter,
-        opacity: 1,
-        translateY: 0,
-        // rotate: {
-        //   value: 360,
-        //   duration: 1000,
-        //   easing: 'easeInExpo'
-        // },
-        // scale: anime.stagger([0.7, 1], {from: 'center'}),
-        // delay: anime.stagger(200, {start: 1000}),
-        // translateX: [-10, 30],
-        loop: true,
-        translateX: 10,
-        delay: anime.stagger(300, { start: 500 }),
-        fontSize: 32,
-      });
-    </script> -->
     <script src="anime.min.js"></script>
   </body>
 </html>
