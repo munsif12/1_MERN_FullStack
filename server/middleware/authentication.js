@@ -1,8 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../schema_or_models/userSchema");
-const aboutMiddleWare = async function (req, res, next) {
+const userAuthentication = async function (req, res, next) {
   try {
-    console.log("in middle ware");
     const cookieStoredToken = req.cookies.jsonWebToken;
     //jwt.verify(token, secretOrPublicKey, [options, callback])
     const verifyToken = jwt.verify(cookieStoredToken, process.env.SECRET__KEY);
@@ -18,8 +17,10 @@ const aboutMiddleWare = async function (req, res, next) {
     req.id = rootUser._id;
     next();
   } catch (error) {
-    res.status(401).json({ message: "not Authorizes user" });
+    res
+      .status(401)
+      .json({ message: "Not An Authorized User Please Login First" });
     console.error(error);
   }
 };
-module.exports = aboutMiddleWare;
+module.exports = userAuthentication;
