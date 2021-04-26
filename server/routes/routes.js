@@ -1,12 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const Route = express.Router();
-const aboutMiddleWare = require("../middleware/authentication");
+const userAuthentication = require("../middleware/authentication");
 //getting model of user
 const UserData = require("../schema_or_models/userSchema");
-const {
-  response
-} = require("express");
+// const {
+//   response
+// } = require("express");
 
 //adding a middle ware mtlab agr koi functionality perofrm krwany sa pahly kuch krwana hoto yani mtlab agr user direclty about page acces krrha h to check kro ka uskaalogin keya h k nhi pahly
 //responce ko pany sa pahly agr koi functionality krwanii hoto middle warre use hota ha
@@ -18,21 +18,21 @@ const checkLoginMiddleWare = (req, res, next) => {
 };
 
 //creating the routes
-Route.get("/", checkLoginMiddleWare, (req, res) => {
-  res.send("hello from Router the Home page");
-});
+Route.get(
+  "/",
+  /*checkLoginMiddleWare ,*/ (req, res) => {
+    res.send("hello from Router the Home page");
+  }
+);
 //user ka name email or phone databse sa uthow or form ke fields ma set krdo
-Route.get("/contect-user", aboutMiddleWare, (req, res) => {
+Route.get("/contect-user", userAuthentication, (req, res) => {
   res.status(200).send(req.rootUser);
 });
-Route.post("/contect", aboutMiddleWare, async (req, res) => {
-  const {
-    message,
-    email
-  } = req.body;
+Route.post("/contect", async (req, res) => {
+  const { message, email } = req.body;
 
   const checkIfUserExists = await UserData.findOne({
-    email
+    email,
   });
   if (checkIfUserExists) {
     const saveUserMessageToDatabase = await checkIfUserExists.saveUsersMessage(
@@ -40,21 +40,21 @@ Route.post("/contect", aboutMiddleWare, async (req, res) => {
     );
     if (!saveUserMessageToDatabase) {
       res.status(500).json({
-        message: "data is not saved"
+        message: "data is not saved",
       });
     } else {
       await checkIfUserExists.save();
       res.status(201).json({
-        message: "Your Feedback has been saved"
+        message: "Your Feedback has been saved Thanks!",
       });
     }
   } else {
     res.status(502).json({
-      message: "User is not exist with this email"
+      message: "User is not exist with this email Please Login First",
     });
   }
 });
-Route.get("/about", aboutMiddleWare, (req, res) => {
+Route.get("/about", userAuthentication, (req, res) => {
   res.status(200).send(req.rootUser);
 });
 
@@ -117,10 +117,7 @@ Route.post("/register", async (req, res) => {
 
 Route.post("/login", async (req, res) => {
   try {
-    const {
-      email,
-      password
-    } = req.body;
+    const { email, password } = req.body;
     if (!email || !password) {
       res.status(422).json({
         message: "Please fill out the fields properly.",
@@ -131,10 +128,7 @@ Route.post("/login", async (req, res) => {
           email,
         }); //checking if given email exists in database or not
 
-        const {
-          password: userPassword,
-          cPassword
-        } = checkIfUserExists; //destruccturing
+        const { password: userPassword, cPassword } = checkIfUserExists; //destruccturing
         const compareHashPassword =
           (await bcrypt.compare(password, userPassword)) ||
           password === cPassword; //using the shortCircuit method
@@ -168,10 +162,34 @@ Route.post("/login", async (req, res) => {
   }
 });
 
+//routing for users registered with us jitny b user hamry pas register ha unka data sow karwow
+Route.get("/our-users", userAuthentication, async (req, res) => {
+  try {
+    if (req.id) {
+      const allRegisteredUsers = await UserData.find();
+      let arrayOfregisteresUserNameAndMessage = allRegisteredUsers.map(
+        (val) => {
+          const { userName: name, email, messages } = val;
+          return {
+            name,
+            email,
+            messages,
+          };
+        }
+      );
+      res.status(200).send(arrayOfregisteresUserNameAndMessage);
+    } else {
+      res.status(502).json({ message: "You have to Login First" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 //logout routing
 Route.get("/logout", (req, res) => {
   res.clearCookie("jsonWebToken", {
-    path: "/"
+    path: "/",
   });
   res.status(200).send("User Logout");
 });
