@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   userName: {
     type: String,
     required: [true, "User Name is required"],
-    minLength: [4, "User Name can't be less then 4 characters"],
+    minLength: [1, "User Name can't be less then 4 characters"],
     maxLength: [25, "User Name can't be greater then 25 characters"],
     trim: true,
   },
@@ -34,13 +34,13 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Password is required"],
-    minLength: [6, "Password can't be less then 4 characters"],
+    minLength: [4, "Password can't be less then 4 characters"],
     trim: true,
   },
   cPassword: {
     type: String,
     required: [true, "Password is required"],
-    minLength: [6, "Password can't be less then 6 characters"],
+    minLength: [4, "Password can't be less then 6 characters"],
     trim: true,
   },
   date: {
