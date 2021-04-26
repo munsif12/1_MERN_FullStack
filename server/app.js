@@ -12,7 +12,7 @@ require("./db_connection/connection");
 //app ko batarhy ha ka agr json ka data aiy to usko object ma convert krdo
 app.use(express.json()); //ya lines hamesha router ko require wali line sa uper hone chaheya becoz js synchroonous hota h wara mare tarah 20 min waste hongy
 
-//cookie parser apka cookies ko reqest ma dalta h ise error ke waja sa 1 project miss hua or aj time b bht laga
+//cookie parser apka cookies ko reqest ma dalta h ise error ke waja sa 1 project miss hua or aj time b bht laga h
 app.use(cookieParser());
 
 //getting the routes for the app like app.get("/",()=>{res.send("hello server")})
